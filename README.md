@@ -42,13 +42,29 @@ Compress the update information into a .csp (compressed simple patch) file.
 Example of Update Information
 The update information might look like this:
 
-ver "1.7" {
-    file "main.exe" {
-        0 add "#This is a file\n"
+{
+    "ver1.7":{
+        "main.exe":[
+            {
+                "action":"add",
+                "location":0,
+                "charactor":"//This is a file\n"
+            },
+            {
+                "action":"delete",
+                "location":[1,2],
+                "charactor":null
+            },
+            {
+                "action":"replace",
+                "location":[3,16],
+                "charactor":"MessageBox.Show(\"Error:Syntax Error\");\n"
+            }
+        ]
     }
 }
 
-This indicates that the string #This is a file\n will be added at the beginning of the file main.exe.
+It is in JSON format, and the extension is only used to distinguish functions.
 
 Conclusion
 SPIGT simplifies the process of managing software patches, ensuring that updates are applied accurately and efficiently. Whether you are installing a patch or generating one, SPIGT provides the necessary tools to streamline your workflow.
